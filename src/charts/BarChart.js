@@ -41,12 +41,14 @@ const BarChart = () => {
     fetchCoins();
   }, [baseURL, proxyURL, apiKey]);
 
+  console.log('chart: \n', chart)
+
   let data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: chart?.coins?.map(x => x.name),
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: `${chart?.coins?.length} Coins Available`,
+        data: chart?.coins?.map(x => x.price),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
